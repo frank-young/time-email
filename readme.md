@@ -1,58 +1,60 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# laravel-api-starter
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+这是一个 Laravel 5.5 + Dingo + JWT 的基础项目, 用于快速开始写 API
 
-## About Laravel
+[![StyleCI](https://styleci.io/repos/95127265/shield)](https://styleci.io/repos/95127265)
+[![License](https://img.shields.io/github/license/liyu001989/laravel-api-starter.svg)](LICENSE)
+[![donate](https://img.shields.io/badge/paypal-donate-red.svg)](https://paypal.me/liyu001989)
+[![donate](https://img.shields.io/badge/%E7%BA%A2%E5%8C%85-donate-red.svg)](https://cloud.githubusercontent.com/assets/2981799/25706351/cfba493c-3112-11e7-9985-aec05ff9734c.png)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Laravel/RESTful 交流群: 216721539
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+## USEFUL LINK
 
-## Learning Laravel
+读文档很重要，请先仔细读读文档 laravel, dingo/api，jwt，fractal 的文档。
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+- dingo/api [https://github.com/dingo/api](https://github.com/dingo/api)
+- dingo api 中文文档 [dingo-api-wiki-zh](https://github.com/liyu001989/dingo-api-wiki-zh)
+- jwt(json-web-token) [https://github.com/tymondesigns/jwt-auth](https://github.com/tymondesigns/jwt-auth)
+- transformer [fractal](http://fractal.thephpleague.com/)
+- apidoc 生成在线文档 [apidocjs](http://apidocjs.com/)
+- rest api 参考规范 [jsonapi.org](http://jsonapi.org/format/)
+- api 调试工具 [postman](https://www.getpostman.com/)
+- 有用的文章 [http://oomusou.io/laravel/laravel-architecture](http://oomusou.io/laravel/laravel-architecture/)
+- php lint [phplint](https://github.com/overtrue/phplint)
+- Laravel 理念 [From Apprentice To Artisan](https://my.oschina.net/zgldh/blog/389246)
+- 我对 REST 的理解 [http://blog.lyyw.info/2017/02/09/2017-02-09%20%E5%AF%B9rest%E7%9A%84%E7%90%86%E8%A7%A3/](http://blog.lyyw.info/2017/02/09/2017-02-09%20%E5%AF%B9rest%E7%9A%84%E7%90%86%E8%A7%A3/)
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+## USAGE
 
-## Laravel Sponsors
+```
+$ git clone git@github.com:liyu001989/laravel-api-starter.git
+$ composer install
+$ 设置 `storage` 目录必须让服务器有写入权限。
+$ cp .env.example .env
+$ vim .env
+    DB_*
+        填写数据库相关配置 your database configuration
+    APP_KEY
+        php artisan key:generate
+    JWT_SECRET
+        php artisan jwt:secret
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+$ php artisan migrate
+$ php artisan db:seed (默认添加了10个用户)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
+头信息中可以增加 Accept:application/vnd.app.v1+json 切换v1和v2版本
+```
 
-## Contributing
+如果访问一直不对，可以进入public 目录执行 `php -S localhost:8000 -t public`，然后尝试调用几个接口，从而确定是否为web服务器的配置问题。
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 相关说明
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- 通过一个中间件 [https://github.com/liyu001989/dingo-serializer-switch](https://github.com/liyu001989/dingo-serializer-switch) 切换 fractal 的 serializer, 默认使用 array。
+- 让 findOrFail 返回 404, 更方便使用
+- 可以用过 `Accept-Language` 头来却换语言，比如 zh-CN, 当然也可以默认中文 
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+[MIT license](http://opensource.org/licenses/MIT)
