@@ -62,5 +62,6 @@ class Kernel extends HttpKernel
 
         // dingo serializer
         'serializer' => \Liyu\Dingo\SerializerSwitch::class,
+        'miniapp.auth' => \App\Http\Middleware\MiniappAuth::class,
     ];
 }
