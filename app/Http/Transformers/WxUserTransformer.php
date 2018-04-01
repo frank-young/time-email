@@ -5,12 +5,12 @@ namespace App\Http\Transformers;
 use App\Models\WxUser;
 use League\Fractal\TransformerAbstract;
 
-class WxUserTransformer extends Transformer
+class WxUserTransformer extends TransformerAbstract
 {
-    public function transform(array $wxuser)
+    public function transform(WxUser $wxuser)
     {
         return [
-
-      ];
+          'name' => $wxuser['nickname']
+        ];
     }
 }

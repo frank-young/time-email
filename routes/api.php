@@ -39,6 +39,7 @@ $api->version('v1', [
     $api->group([], function ($api) {
         // 已到达公开邮件
         $api->get('post/public/list', 'PostController@publicList')->name('api.post.publicList');
+        $api->get('post/public/show', 'PostController@show')->name('api.post.show');
 
     });
 });

@@ -5,12 +5,18 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Transformers\PostTransformer;
+use League\Fractal\Manager;
+use League\Fractal\Resource\Collection;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class PostController extends Controller
 {
-  protected $postTransform;
-  public function __construct(PostTransformer $postTransform)
+  private $postTransform;
+  private $fractal;
+
+  function __construct(Manager $fractal, PostTransformer $postTransform)
   {
+      $this->fractal = $fractal;
       $this->postTransform = $postTransform;
   }
 
@@ -25,15 +31,33 @@ class PostController extends Controller
   /*  公开邮件列表，只会显示已到达的邮件  */
   public function publicList (Request $request)
   {
-    $data = Post::getEmailList($request);
-    return $this->responseSuccess($this->postTransform->transforms($data->toArray()));
+    $dataPaginator = Post::getEmailList($request);
+    $data = new Collection($dataPaginator->items(), $this->postTransform);
+    $data->setPaginator(new IlluminatePaginatorAdapter($dataPaginator));
+    $this->fractal->parseIncludes($request->get('include', ''));
+    $data = $this->fractal->createData($data);
+
+    return $this->responseSuccess($data->toArray());
+  }
+
+  /*  公开邮件列表，列表详情  */
+  public function show (Request $request)
+  {
+    $data = Post::getEmail($request);
+    $data = new Collection($data, $this->postTransform);
+    $data = $this->fractal->createData($data);
+    return $this->responseSuccess($data->toArray());
   }
 
   /*  用户邮件列表  */
   public function userPostList (Request $request)
   {
-    $data = Post::getUserEmail($request);
-    return $this->responseSuccess($this->postTransform->transforms($data->toArray()));
+    $dataPaginator = Post::getUserEmail($request);
+    $data = new Collection($dataPaginator->items(), $this->postTransform);
+    $data->setPaginator(new IlluminatePaginatorAdapter($dataPaginator));
+    $data = $this->fractal->createData($data);
+
+    return $this->responseSuccess($data->toArray());
   }
 
 }
