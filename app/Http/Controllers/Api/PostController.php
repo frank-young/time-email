@@ -31,10 +31,10 @@ class PostController extends Controller
   /*  公开邮件列表，只会显示已到达的邮件  */
   public function publicList (Request $request)
   {
+    $this->fractal->parseIncludes($request->get('include', ''));
     $dataPaginator = Post::getEmailList($request);
     $data = new Collection($dataPaginator->items(), $this->postTransform);
     $data->setPaginator(new IlluminatePaginatorAdapter($dataPaginator));
-    $this->fractal->parseIncludes($request->get('include', ''));
     $data = $this->fractal->createData($data);
 
     return $this->responseSuccess($data->toArray());
@@ -43,15 +43,17 @@ class PostController extends Controller
   /*  公开邮件列表，列表详情  */
   public function show (Request $request)
   {
+    $this->fractal->parseIncludes($request->get('include', ''));
     $data = Post::getEmail($request);
     $data = new Collection($data, $this->postTransform);
     $data = $this->fractal->createData($data);
-    return $this->responseSuccess($data->toArray());
+    return $this->responseSuccess($data);
   }
 
   /*  用户邮件列表  */
   public function userPostList (Request $request)
   {
+    $this->fractal->parseIncludes($request->get('include', ''));
     $dataPaginator = Post::getUserEmail($request);
     $data = new Collection($dataPaginator->items(), $this->postTransform);
     $data->setPaginator(new IlluminatePaginatorAdapter($dataPaginator));
