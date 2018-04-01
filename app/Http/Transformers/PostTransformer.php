@@ -3,12 +3,13 @@
 namespace App\Http\Transformers;
 
 use App\Models\Post;
-use League\Fractal\TransformerAbstract;
 
-class PostTransformer extends TransformerAbstract
+class PostTransformer extends Transformer
 {
-    public function transform(Post $post)
+    public function transform(array $post)
     {
-        return $post->toArray();
+        return [
+          'title'   => $post['title'],
+      ];
     }
 }

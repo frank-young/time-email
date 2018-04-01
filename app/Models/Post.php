@@ -27,17 +27,19 @@ class Post extends Model
       return self::create($request->all());
     }
 
-    public function toArray()
-    {
-        return [
-            'errcode' => 0,
-            'success' => true,
-            'content' => '添加成功'
-        ];
+    // 查询个人邮件
+    public static function getEmailList ($request) {
+      return self::where([
+        'arrive_status' => 1,
+        'is_public' => 1
+        ])->get();
     }
 
     // 查询个人邮件
-    public static function getEmail ($request) {
-      return self::where(['wxuser_id' => $request->wxuser_id])->get();
+    public static function getUserEmail ($request) {
+      return self::where([
+        'wxuser_id' => $request->wxuser_id,
+        'arrive_status' => 1
+        ])->get();
     }
 }

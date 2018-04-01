@@ -34,6 +34,11 @@ $api->version('v1', [
         $api->post('post/store', 'PostController@store')->name('api.post.store');
 
         // 我的邮件
-        $api->get('wxuser/post', 'WxUserController@show')->name('api.wxuser.show');
+        $api->get('post/user/list', 'PostController@userPostList')->name('api.post.userPostList');
+    });
+    $api->group([], function ($api) {
+        // 已到达公开邮件
+        $api->get('post/public/list', 'PostController@publicList')->name('api.post.publicList');
+
     });
 });

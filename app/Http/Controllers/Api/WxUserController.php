@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
-use App\Http\Transformers\PostTransformer;
 
 class WxUserController extends Controller
 {
+
   public function login(Request $request)
   {
     $options = [
@@ -29,11 +28,5 @@ class WxUserController extends Controller
 
     $res = returnCode(true,'获取成功', $wxuser);
     return response()->json($res);
-  }
-
-  public function show (Request $request)
-  {
-    $data = Post::getEmail($request);
-    return $this->response->item($data, new PostTransformer());
   }
 }

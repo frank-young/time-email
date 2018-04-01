@@ -39,13 +39,4 @@ class WxUser extends Model
     return $res;
   }
 
-  public function toArray()
-  {
-      return [
-          'errcode' => 0,
-          'success' => true,
-          'content' => '查询成功'
-      ];
-  }
-
 }
