@@ -8,6 +8,7 @@ use App\Http\Transformers\PostTransformer;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use League\Fractal\Resource\ResourceInterface;
 
 class PostController extends Controller
 {
@@ -40,13 +41,13 @@ class PostController extends Controller
     return $this->responseSuccess($data->toArray());
   }
 
-  /*  公开邮件列表，列表详情  */
+  /*  公开邮件，列表详情  */
   public function show (Request $request)
   {
-    $this->fractal->parseIncludes($request->get('include', ''));
+    // $this->fractal->parseIncludes($request->get('include', ''));
     $data = Post::getEmail($request);
-    $data = new Collection($data, $this->postTransform);
-    $data = $this->fractal->createData($data);
+    // $data = new Collection($data, $this->postTransform);
+    // $data = $this->fractal->createData($data);
     return $this->responseSuccess($data);
   }
 

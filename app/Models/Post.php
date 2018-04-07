@@ -40,8 +40,8 @@ class Post extends Model
     public static function getEmail ($request) {
       return self::where([
         'id' => $request->id,
-        'arrive_status' => 1,
-        'is_public' => 1
+        // 'arrive_status' => 1,
+        // 'is_public' => 1
         ])->first();
     }
 
