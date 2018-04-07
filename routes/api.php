@@ -40,6 +40,6 @@ $api->version('v1', [
         // 已到达公开邮件
         $api->get('post/public/list', 'PostController@publicList')->name('api.post.publicList');
         $api->get('post/public/show', 'PostController@show')->name('api.post.show');
-
+        $api->get('post/arrived', 'PostController@postArrived')->name('api.arrived');
     });
 });

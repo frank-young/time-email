@@ -25,7 +25,6 @@ class PostController extends Controller
   public function store (Request $request)
   {
     $data = Post::saveEmail($request);
-    // return $this->response->item($data, new PostTransformer());
     return $this->responseOk('添加成功');
   }
 
@@ -61,6 +60,14 @@ class PostController extends Controller
     $data = $this->fractal->createData($data);
 
     return $this->responseSuccess($data->toArray());
+  }
+
+  /*  检查邮件到达状态 ，轮训调用 */
+  public function postArrived (Request $request)
+  {
+    $now_time = date("Y-m-d H:i:s");
+    $data = Post::where('arrive_time', '<=', $now_time)->update(['arrive_status' => 1]);
+    return $this->responseSuccess($data);
   }
 
 }
