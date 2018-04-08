@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests;
 use Illuminate\Http\Request;
+use Dingo\Api\Routing\Helpers;
+use App\Http\Controllers\Controller;
+use EasyWeChat\Foundation\Application;
 
 class WxUserController extends Controller
 {
@@ -11,8 +15,8 @@ class WxUserController extends Controller
   {
     $options = [
       'mini_program' => [
-        'app_id'   => '----',
-        'secret'   => '----',
+        'app_id'   => 'wx1c426b7c3311c97d',
+        'secret'   => '96e7138c8f77743424de076871a39629',
         // token 和 aes_key 开启消息推送后可见
         'token'    => 'your-token',
         'aes_key'  => 'your-aes-key'
