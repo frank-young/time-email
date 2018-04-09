@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Dingo\Api\Routing\Helpers;
-use App\Http\Controllers\Controller;
 use EasyWeChat\Foundation\Application;
+use App\Models\WxUser;
 
 class WxUserController extends Controller
 {
@@ -28,9 +28,8 @@ class WxUserController extends Controller
     $iv = $request->input('userInfo.iv');
     $encryptedData = $request->input('userInfo.encryptedData');
     $data = $app->mini_program->encryptor->decryptData($session_key, $iv, $encryptedData);
-    $wxuser = WxUser::saveData($unique_id, $data);
+    $wxuser = WxUser::saveData($data);
 
-    $res = returnCode(true,'获取成功', $wxuser);
-    return response()->json($res);
+    return $this->responseSuccess($wxuser);
   }
 }
