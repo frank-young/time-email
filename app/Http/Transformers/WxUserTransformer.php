@@ -10,7 +10,8 @@ class WxUserTransformer extends TransformerAbstract
     public function transform(WxUser $wxuser)
     {
         return [
-          'name' => $wxuser['nickname']
+          'nickname' => $wxuser['nickname'],
+          'avatar' => $wxuser['avatar']
         ];
     }
 }
