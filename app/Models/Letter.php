@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Models\WxUser;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Letter extends Model
 {
     protected $fillable = [
       'title',
@@ -24,12 +24,12 @@ class Post extends Model
     ];
 
     // 保存邮件
-    public static function saveEmail ($request) {
+    public static function saveLetter ($request) {
       return self::create($request->all());
     }
 
     // 公开邮件列表
-    public static function getEmailList ($request) {
+    public static function getLetterList ($request) {
       return self::where([
         'arrive_status' => 1,
         'is_public' => 1
@@ -37,7 +37,7 @@ class Post extends Model
     }
 
     // 公开邮件详情
-    public static function getEmail ($request) {
+    public static function getLetter ($request) {
       return self::where([
         'id' => $request->id,
         // 'arrive_status' => 1,
@@ -46,7 +46,7 @@ class Post extends Model
     }
 
     // 查询个人邮件
-    public static function getUserEmail ($request) {
+    public static function getUserLetter ($request) {
       return self::where([
         'wxuser_id' => $request->wxuser_id,
         'arrive_status' => 1

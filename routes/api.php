@@ -24,17 +24,16 @@ $api->version('v1', [
       'middleware' => 'miniapp.auth'
     ], function ($api) {
         // 添加邮件
-        $api->post('post/store', 'PostController@store')->name('api.post.store');
-
+        $api->post('letter/store', 'LetterController@store');
         // 我的邮件
-        $api->get('post/user/list', 'PostController@userPostList')->name('api.post.userPostList');
+        $api->get('letter/user/list', 'LetterController@userLetterList');
     });
     $api->group([], function ($api) {
         // 微信登录
         $api->post('auth/loginByWeixin','WxUserController@login');
         // 已到达公开邮件
-        $api->get('post/public/list', 'PostController@publicList')->name('api.post.publicList');
-        $api->get('post/public/show', 'PostController@show')->name('api.post.show');
-        $api->get('post/arrived', 'PostController@postArrived')->name('api.arrived');
+        $api->get('letter/list', 'LetterController@publicList');
+        $api->get('letter/show', 'LetterController@show');
+        $api->get('letter/arrived', 'LetterController@letterArrived');
     });
 });

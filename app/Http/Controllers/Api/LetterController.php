@@ -3,28 +3,28 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
-use App\Http\Transformers\PostTransformer;
+use App\Models\Letter;
+use App\Http\Transformers\LetterTransformer;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use League\Fractal\Resource\ResourceInterface;
 
-class PostController extends Controller
+class LetterController extends Controller
 {
-  private $postTransform;
+  private $letterTransform;
   private $fractal;
 
-  function __construct(Manager $fractal, PostTransformer $postTransform)
+  function __construct(Manager $fractal, LetterTransformer $letterTransform)
   {
       $this->fractal = $fractal;
-      $this->postTransform = $postTransform;
+      $this->postTransform = $letterTransform;
   }
 
   /*  提交邮件  */
   public function store (Request $request)
   {
-    $data = Post::saveEmail($request);
+    $data = Letter::save($request);
     return $this->responseOk('添加成功');
   }
 
@@ -32,7 +32,7 @@ class PostController extends Controller
   public function publicList (Request $request)
   {
     $this->fractal->parseIncludes($request->get('include', ''));
-    $dataPaginator = Post::getEmailList($request);
+    $dataPaginator = Letter::getLetterList($request);
     $data = new Collection($dataPaginator->items(), $this->postTransform);
     $data->setPaginator(new IlluminatePaginatorAdapter($dataPaginator));
     $data = $this->fractal->createData($data);
@@ -44,17 +44,17 @@ class PostController extends Controller
   public function show (Request $request)
   {
     // $this->fractal->parseIncludes($request->get('include', ''));
-    $data = Post::getEmail($request);
+    $data = Letter::getLetter($request);
     // $data = new Collection($data, $this->postTransform);
     // $data = $this->fractal->createData($data);
     return $this->responseSuccess($data);
   }
 
   /*  用户邮件列表  */
-  public function userPostList (Request $request)
+  public function userLetterList (Request $request)
   {
     $this->fractal->parseIncludes($request->get('include', ''));
-    $dataPaginator = Post::getUserEmail($request);
+    $dataPaginator = Letter::getUserLetter($request);
     $data = new Collection($dataPaginator->items(), $this->postTransform);
     $data->setPaginator(new IlluminatePaginatorAdapter($dataPaginator));
     $data = $this->fractal->createData($data);
@@ -66,7 +66,7 @@ class PostController extends Controller
   public function postArrived (Request $request)
   {
     $now_time = date("Y-m-d H:i:s");
-    $data = Post::where('arrive_time', '<=', $now_time)->update(['arrive_status' => 1]);
+    $data = Letter::where('arrive_time', '<=', $now_time)->update(['arrive_status' => 1]);
     return $this->responseSuccess($data);
   }
 
