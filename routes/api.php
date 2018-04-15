@@ -25,6 +25,12 @@ $api->version('v1', [
     ], function ($api) {
         // 添加邮件
         $api->post('letter/store', 'LetterController@store');
+        $api->post('comment/store', 'CommentController@store');
+
+        // 信件点赞
+        $api->post('letter/like/increment', 'LikeController@incrementLikeCount');
+        $api->post('letter/like/decrement', 'LikeController@decrementLikeCount');
+
         // 我的邮件
         $api->get('letter/user/list', 'LetterController@userLetterList');
     });
@@ -34,6 +40,14 @@ $api->version('v1', [
         // 已到达公开邮件
         $api->get('letter/list', 'LetterController@publicList');
         $api->get('letter/show', 'LetterController@show');
+
+        // 到达操作
         $api->get('letter/arrived', 'LetterController@letterArrived');
+
+        // 获取评论
+        $api->get('comment/list', 'CommentController@list');
+        $api->get('comment/increment', 'CommentController@incrementLikeCount');
+        $api->get('comment/decrement', 'CommentController@decrementLikeCount');
+
     });
 });

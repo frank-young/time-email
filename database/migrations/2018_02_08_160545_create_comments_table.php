@@ -15,11 +15,13 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id')->default(0)->comment('邮件id');
-            $table->string('content')->nullable()->comment('回复内容');
+            $table->integer('letter_id')->default(0)->comment('邮件id');
+            $table->integer('comment_id')->default(0)->comment('评论id，用于回复评论');
+            $table->string('content')->nullable()->comment('评论内容');
             $table->text('images')->nullable()->comment('图片');
-            $table->integer('from_wxuser_id')->default(0)->comment('用户id');
+            $table->integer('wxuser_id')->default(0)->comment('用户id');
             $table->integer('to_wxuser_id')->default(0)->comment('用户id');
+            $table->integer('comment_like_count')->default(0)->comment('评论喜欢数量');
 
             $table->timestamps();
         });
