@@ -15,6 +15,7 @@ class LetterTransformer extends TransformerAbstract
     public function transform(Letter $letter)
     {
         return [
+          'id'   => $letter['id'],
           'title'   => $letter['title'],
           'content' => $letter['content'],
           'images' => $letter['images'],

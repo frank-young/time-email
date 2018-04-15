@@ -40,8 +40,6 @@ class Letter extends Model
     public static function getLetter ($request) {
       return self::where([
         'id' => $request->id,
-        // 'arrive_status' => 1,
-        // 'is_public' => 1
         ])->first();
     }
 
@@ -57,4 +55,10 @@ class Letter extends Model
     {
         return $this->belongsTo(WxUser::class);
     }
+
+    // 关联 comment
+    // public function comment()
+    // {
+    //   return $this->hasMany('App\Models\Comment');
+    // }
 }
