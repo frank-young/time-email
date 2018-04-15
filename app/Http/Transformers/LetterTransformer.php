@@ -23,6 +23,7 @@ class LetterTransformer extends TransformerAbstract
           'arrive_status' => $letter['arrive_status'],
           'is_public' => $letter['is_public'],
           'like_count' => $letter['like_count'],
+          'is_like' => $letter['is_like'],
           'comment_count' => $letter['comment_count']
         ];
     }

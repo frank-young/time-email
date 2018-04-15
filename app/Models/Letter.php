@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\WxUser;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Like;
 
 class Letter extends Model
 {
@@ -38,9 +39,17 @@ class Letter extends Model
 
     // 公开邮件详情
     public static function getLetter ($request) {
-      return self::where([
+      $data = self::where([
         'id' => $request->id,
         ])->first();
+
+      $count = Like::where([
+        'letter_id' => $request->id,
+        'wxuser_id' => $request->wxuser_id
+      ])->count();
+
+      $data['is_like'] = $count;
+      return $data;
     }
 
     // 查询个人邮件

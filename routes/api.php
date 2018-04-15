@@ -33,13 +33,15 @@ $api->version('v1', [
 
         // 我的邮件
         $api->get('letter/user/list', 'LetterController@userLetterList');
+
+        // 公开邮件详情
+        $api->get('letter/show', 'LetterController@show');
     });
     $api->group([], function ($api) {
         // 微信登录
         $api->post('auth/loginByWeixin','WxUserController@login');
         // 已到达公开邮件
         $api->get('letter/list', 'LetterController@publicList');
-        $api->get('letter/show', 'LetterController@show');
 
         // 到达操作
         $api->get('letter/arrived', 'LetterController@letterArrived');
