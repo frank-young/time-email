@@ -8,6 +8,7 @@ use App\Http\Transformers\CommentTransformer;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use App\Models\Letter;
 
 class CommentController extends Controller
 {
@@ -24,6 +25,7 @@ class CommentController extends Controller
   public function store (Request $request)
   {
     $data = Comment::saveData($request);
+    Letter::find($request->letter_id)->increment('comment_count', 1);
     return $this->responseOk('评论成功');
   }
 

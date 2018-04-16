@@ -26,7 +26,8 @@ class Comment extends Model
     public static function getList ($request) {
       return self::where([
         'letter_id' => $request->letter_id
-        ])->paginate($request->page_size);
+        ])->orderBy('created_at', 'desc')
+        ->paginate($request->page_size);
     }
 
     public function wxuser()

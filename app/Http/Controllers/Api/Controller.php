@@ -54,7 +54,7 @@ class Controller extends BaseController
         return $this->response([
             'status'      => 'failed',
             'status_code' => $this->getStatusCode(),
-            'massage'     => $message
+            'message'     => $message
         ]);
     }
 
@@ -68,7 +68,7 @@ class Controller extends BaseController
         return $this->response([
             'status'      => 'success',
             'status_code' => $this->getStatusCode(),
-            'massage'     => $message,
+            'message'     => $message,
             'data'        => $data
         ]);
     }
@@ -83,7 +83,7 @@ class Controller extends BaseController
         return $this->response([
             'status'      => 'success',
             'status_code' => $this->getStatusCode(),
-            'massage'     => $message
+            'message'     => $message
         ]);
     }
 }

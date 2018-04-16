@@ -22,6 +22,7 @@ class CommentTransformer extends TransformerAbstract
           'images' => $comment['images'],
           'wxuser_id' => $comment['wxuser_id'],
           'to_wxuser_id' => $comment['to_wxuser_id'],
+          'time' => $comment['created_at'],
           'comment_like_count' => $comment['comment_like_count']
         ];
     }
