@@ -25,7 +25,7 @@ class LetterController extends Controller
   /*  提交邮件  */
   public function store (Request $request)
   {
-    $data = Letter::save($request);
+    $data = Letter::saveLetter($request);
     return $this->responseOk('添加成功');
   }
 
