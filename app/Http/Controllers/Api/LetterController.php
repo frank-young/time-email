@@ -64,7 +64,7 @@ class LetterController extends Controller
   }
 
   /*  检查邮件到达状态 ，轮训调用 */
-  public function postArrived (Request $request)
+  public function letterArrived (Request $request)
   {
     $now_time = date("Y-m-d H:i:s");
     $data = Letter::where('arrive_time', '<=', $now_time)->update(['arrive_status' => 1]);

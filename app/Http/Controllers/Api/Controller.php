@@ -52,7 +52,7 @@ class Controller extends BaseController
     public function responseErrors($message = 'Not Found')
     {
         return $this->response([
-            'status'      => 'failed',
+            'status'      => false,
             'status_code' => $this->getStatusCode(),
             'message'     => $message
         ]);
@@ -66,7 +66,7 @@ class Controller extends BaseController
     public function responseSuccess($data, $message = 'Success')
     {
         return $this->response([
-            'status'      => 'success',
+            'status'      => true,
             'status_code' => $this->getStatusCode(),
             'message'     => $message,
             'data'        => $data
@@ -81,7 +81,7 @@ class Controller extends BaseController
     public function responseOk($message ='Ok')
     {
         return $this->response([
-            'status'      => 'success',
+            'status'      => true,
             'status_code' => $this->getStatusCode(),
             'message'     => $message
         ]);
