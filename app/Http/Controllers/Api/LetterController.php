@@ -9,7 +9,8 @@ use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
-// use League\Fractal\Resource\ResourceInterface;
+use App\Jobs\SendEmail;
+use Illuminate\Support\Facades\Log;
 
 class LetterController extends Controller
 {
@@ -66,9 +67,16 @@ class LetterController extends Controller
   /*  检查邮件到达状态 ，轮训调用 */
   public function letterArrived (Request $request)
   {
-    $now_time = date("Y-m-d H:i:s");
-    $data = Letter::where('arrive_time', '<=', $now_time)->update(['arrive_status' => 1]);
-    return $this->responseSuccess($data);
+    try {
+      $now_time = date("Y-m-d H:i:s");
+      $data = Letter::where('arrive_time', '<=', $now_time)
+                    ->where(['arrive_status' => 0])
+                    ->get();
+      SendEmail::dispatch($data);
+    } catch (\Exception $e) {
+      Log::info('控制器letterArrived ：轮训调用时异常。错误详情：'.$e);
+    }
+    return $this->responseOk('执行成功');
   }
 
 }
