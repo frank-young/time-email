@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreatePromptsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * 系统数据
      *
      * @return void
      */
