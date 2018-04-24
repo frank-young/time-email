@@ -43,7 +43,7 @@ $api->version('v1', [
         // 已到达公开邮件
         $api->get('letter/list', 'LetterController@publicList');
 
-        // 到达操作
+        // 到达操作 - 轮训操作
         $api->get('letter/arrived', 'LetterController@letterArrived');
 
         // 获取评论
@@ -51,5 +51,8 @@ $api->version('v1', [
         $api->get('comment/increment', 'CommentController@incrementLikeCount');
         $api->get('comment/decrement', 'CommentController@decrementLikeCount');
 
+        // 获取额外信息
+        $api->post('prompt/store', 'PromptController@store');
+        $api->get('prompt/show', 'PromptController@show');
     });
 });
