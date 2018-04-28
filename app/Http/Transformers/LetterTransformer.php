@@ -18,7 +18,6 @@ class LetterTransformer extends TransformerAbstract
         $description = mb_strlen($content) > 60 ? mb_substr($content, 0, 60, 'utf-8').'...' : $content;
         $arrive_time_stemp = strtotime($letter['arrive_time']);
         $created_at_stemp = strtotime($letter['created_at']);
-
         $diff = $this->timediff($arrive_time_stemp, $created_at_stemp);
         $meta = '寄给'.$diff.'后';
 
