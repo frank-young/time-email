@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrustProxies::class,
         // set language
         \App\Http\Middleware\ChangeLocale::class,
+        \App\Http\Middleware\CORS::class,
     ];
 
     /**
@@ -63,5 +64,6 @@ class Kernel extends HttpKernel
         // dingo serializer
         'serializer' => \Liyu\Dingo\SerializerSwitch::class,
         'miniapp.auth' => \App\Http\Middleware\MiniappAuth::class,
+        'cors' => \App\Http\Middleware\CORS::class,
     ];
 }

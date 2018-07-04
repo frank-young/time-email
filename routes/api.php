@@ -6,7 +6,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => 'serializer:array',
+    'middleware' => ['serializer:array', 'cors']
 ], function ($api) {
     // 获取 token
     // $api->post('authorizations', 'AuthorizationController@store')
