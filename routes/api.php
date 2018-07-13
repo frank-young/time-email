@@ -40,6 +40,9 @@ $api->version('v1', [
     $api->group([], function ($api) {
         // 微信登录
         $api->post('auth/loginByWeixin','WxUserController@login');
+        // 浏览器登录
+        $api->post('auth/loginByWeb','WxUserController@loginByWeb');
+
         // 已到达公开邮件
         $api->get('letter/list', 'LetterController@publicList');
 

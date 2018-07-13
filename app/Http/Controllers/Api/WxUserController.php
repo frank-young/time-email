@@ -28,7 +28,27 @@ class WxUserController extends Controller
     $iv = $request->input('userInfo.iv');
     $encryptedData = $request->input('userInfo.encryptedData');
     $data = $app->mini_program->encryptor->decryptData($session_key, $iv, $encryptedData);
+    $data['network'] = 'weixin';
     $wxuser = WxUser::saveData($data);
+
+    return $this->responseSuccess($wxuser);
+  }
+
+  // 通过浏览器登录
+  public function loginByWeb(Request $request) {
+    $ip = $request->getClientIp();
+    $array = [
+      'nickName' => '匿名用户',
+      'avatarUrl' => '',
+      'gender' => 0,
+      'country' => '',
+      'province' => '',
+      'city' => '',
+      'openId' => $ip,
+      'network' => 'web'
+    ];
+
+    $wxuser = WxUser::saveData($array);
 
     return $this->responseSuccess($wxuser);
   }

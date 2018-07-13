@@ -15,7 +15,8 @@
         "overtrue/laravel-wechat": "^3.1",
         "overtrue/wechat": "^3.3",
         "tucker-eric/eloquentfilter": "^1.2",
-        "tymon/jwt-auth": "1.0.0-rc.1"
+        "tymon/jwt-auth": "1.0.0-rc.1",
+        "yzalis/identicon": "^1.2"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
