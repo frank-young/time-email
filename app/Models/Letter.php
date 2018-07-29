@@ -32,9 +32,10 @@ class Letter extends Model
     // 公开邮件列表
     public static function getLetterList ($request) {
       return self::where([
-        'arrive_status' => 1,
+        // 'arrive_status' => 1,
         'is_public' => 1
-        ])->paginate($request->page_size);
+        ])->orderBy('created_at', 'desc')
+        ->paginate($request->page_size);
     }
 
     // 公开邮件详情

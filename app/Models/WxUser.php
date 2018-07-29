@@ -16,7 +16,7 @@ class WxUser extends Model
         $identicon = new \Identicon\Identicon();
         $imageData = $identicon->getImageData(substr($file_name, 1, rand(3, 25)), 150);
         Storage::disk('local')->put('public/avatar/'.$file_name.'.jpg', $imageData);
-        $data['avatarUrl'] = 'http://'.$_SERVER['HTTP_HOST'].'/storage/avatar/'.$file_name.'.jpg';
+        $data['avatarUrl'] = 'https://'.$_SERVER['HTTP_HOST'].'/storage/avatar/'.$file_name.'.jpg';
       }
       $wx_user = new WxUser;
       $wx_user->nickname = $data['nickName'];

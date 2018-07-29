@@ -35,7 +35,7 @@ class LetterTransformer extends TransformerAbstract
           'is_like' => $letter['is_like'],
           'comment_count' => $letter['comment_count'],
           'create_date' => date('Y-m-d', $created_at_stemp),
-          'arrive_date' => date('Y-m-d', $arrive_time_stemp),
+          'arrive_date' => date('Y', $arrive_time_stemp),
           'create_time' => $letter['created_at']
         ];
     }
