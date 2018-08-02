@@ -21,6 +21,7 @@ class CreatePromptsTable extends Migration
             $table->text('success_tip')->nullable()->comment('成功内容提示');
             $table->text('images_url')->nullable()->comment('图片');
             $table->string('share_message')->nullable()->comment('分享文字');
+            $table->integer('audit_switch')->default(0)->comment('审核开关');
             $table->text('text1')->nullable()->comment('文字1');
             $table->text('text2')->nullable()->comment('文字2');
             $table->text('text3')->nullable()->comment('文字3');

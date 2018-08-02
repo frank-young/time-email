@@ -13,6 +13,7 @@ class Prompt extends Model
       'success_tip',
       'images_url',
       'share_message',
+      'audit_switch',
       'text1',
       'text2',
       'text3'
